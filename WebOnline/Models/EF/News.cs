@@ -19,5 +19,6 @@ namespace WebOnline.Models.EF
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set;}
         public string SeoKeyWords { get; set; }
+        public virtual Categorys Categorys { get; set; }
     }
 }

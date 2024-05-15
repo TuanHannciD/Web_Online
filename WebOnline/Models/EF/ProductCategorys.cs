@@ -3,9 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOnline.Models.EF
 {
-
+    [Table("tb_DanhMucSaPham")]
     public class ProductCategorys :CMAbstract
     {
+        public ProductCategorys() 
+        {
+            this.Products = new HashSet<Products>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -16,5 +20,7 @@ namespace WebOnline.Models.EF
         public string SeoTitle {  get; set; }
         public string SeoDescription { get; set;}
         public string SeoKeyWord { get; set; } 
+
+        public ICollection<Products> Products { get; set; }
     }
 }

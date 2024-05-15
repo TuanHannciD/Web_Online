@@ -15,6 +15,7 @@ namespace WebOnline.Models.EF
         public string Title { get; set; }
         public string Description { get; set; }
         public string  Image {  get; set; }
+        [StringLength(500)]
         public string Link { get; set; }
     }
 }

@@ -6,6 +6,11 @@ namespace WebOnline.Models.EF
     [Table("tb_DatHang")]
     public class Oders : CMAbstract
     {
+        public Oders() 
+        {
+            this.OderDetails = new HashSet<OderDetails>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -20,5 +25,7 @@ namespace WebOnline.Models.EF
         public decimal TotalArmout { get; set; }
         [Required]
         public int Quantity { get; set; }
+
+        public ICollection<OderDetails> OderDetails { get; set; }
     }
 }

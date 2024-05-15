@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOnline.Models.EF
 {
+    [Table("tb_SanPham")]
     public class Products :CMAbstract
     {
         [Key]
@@ -25,6 +26,9 @@ namespace WebOnline.Models.EF
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set;}
         public string SeoKeyWords { get; set;}
+
+        public virtual ProductCategorys ProductCategorys { get; set; }
+        
 
     }
 }

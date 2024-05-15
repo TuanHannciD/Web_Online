@@ -6,6 +6,10 @@ namespace WebOnline.Models.EF
     [Table("tb_DanhMuc")]
     public class Categorys:CMAbstract
     {
+        public Categorys() 
+        {
+            this.news = new HashSet<News>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -18,5 +22,9 @@ namespace WebOnline.Models.EF
         public string SeoDescription { get; set;}
 
         public string SeoKeyWord{ get; set;}
+
+        public ICollection<News> news { get; set; }
+        public ICollection<Posts> posts { get; set; }
+
     }
 }
