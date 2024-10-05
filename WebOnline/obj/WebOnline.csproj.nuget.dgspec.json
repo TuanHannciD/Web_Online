@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TUNA\\Desktop\\WebOnline\\WebOnline\\WebOnline.csproj": {}
+    "D:\\TinHoc\\DuAn\\Web_Online\\WebOnline\\WebOnline.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TUNA\\Desktop\\WebOnline\\WebOnline\\WebOnline.csproj": {
+    "D:\\TinHoc\\DuAn\\Web_Online\\WebOnline\\WebOnline.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TUNA\\Desktop\\WebOnline\\WebOnline\\WebOnline.csproj",
+        "projectUniqueName": "D:\\TinHoc\\DuAn\\Web_Online\\WebOnline\\WebOnline.csproj",
         "projectName": "WebOnline",
-        "projectPath": "C:\\Users\\TUNA\\Desktop\\WebOnline\\WebOnline\\WebOnline.csproj",
-        "packagesPath": "C:\\Users\\TUNA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TUNA\\Desktop\\WebOnline\\WebOnline\\obj\\",
+        "projectPath": "D:\\TinHoc\\DuAn\\Web_Online\\WebOnline\\WebOnline.csproj",
+        "packagesPath": "C:\\Users\\doba2\\.nuget\\packages\\",
+        "outputPath": "D:\\TinHoc\\DuAn\\Web_Online\\WebOnline\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\TUNA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\doba2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -51,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.4, )"
@@ -70,6 +73,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.5, )"
             }
           },
           "imports": [
@@ -91,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

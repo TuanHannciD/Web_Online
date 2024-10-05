@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOnline.Models.EF
 {
-    [Table("tb_DatHang")]
+    [Table("tb_GioHang")]
     public class Oders : CMAbstract
     {
         public Oders() 
@@ -25,6 +25,9 @@ namespace WebOnline.Models.EF
         public decimal TotalArmout { get; set; }
         [Required]
         public int Quantity { get; set; }
+
+        [ForeignKey("UserId")]
+        public ApplicationUser ApplicationUser { get; set; }
 
         public ICollection<OderDetails> OderDetails { get; set; }
     }

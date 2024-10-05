@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOnline.Models.EF
 {
-    [Table("tb_ChiTietDatHang")]
+    [Table("tb_ChiTietGioHang")]
     public class OderDetails : CMAbstract
     {
         [Key]

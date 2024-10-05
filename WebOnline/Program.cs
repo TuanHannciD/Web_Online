@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebOnline.Models;
+using WebOnline.Models.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<WebOnlineDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString")));
-
-
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<WebOnlineDBContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
