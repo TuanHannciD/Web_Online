@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebOnline.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDB_IdentityV10 : Migration
+    public partial class UpdateDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,7 +51,7 @@ namespace WebOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_DanhMucSaPham",
+                name: "tb_DanhMucSanPham",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -68,7 +68,7 @@ namespace WebOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_DanhMucSaPham", x => x.Id);
+                    table.PrimaryKey("PK_tb_DanhMucSanPham", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,6 +133,7 @@ namespace WebOnline.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -165,6 +166,25 @@ namespace WebOnline.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_VaiTro", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tb.ThuongHieu",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameBranch = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb.ThuongHieu", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -230,72 +250,6 @@ namespace WebOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_SanPham",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PriceSale = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    IsHome = table.Column<bool>(type: "bit", nullable: false),
-                    IsSale = table.Column<bool>(type: "bit", nullable: false),
-                    IsFeature = table.Column<bool>(type: "bit", nullable: false),
-                    IsHot = table.Column<bool>(type: "bit", nullable: false),
-                    ProductCategory = table.Column<int>(type: "int", nullable: false),
-                    SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SeoKeyWords = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductCategorysId = table.Column<int>(type: "int", nullable: false),
-                    CreatBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tb_SanPham", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tb_SanPham_tb_DanhMucSaPham_ProductCategorysId",
-                        column: x => x.ProductCategorysId,
-                        principalTable: "tb_DanhMucSaPham",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tb_GioHang",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalArmout = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CreatBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModifiedDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tb_GioHang", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tb_GioHang_tb_TaiKhoan_UserId",
-                        column: x => x.UserId,
-                        principalTable: "tb_TaiKhoan",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tb_UserClaims",
                 columns: table => new
                 {
@@ -357,6 +311,28 @@ namespace WebOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "tb.GioHang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb.GioHang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tb.GioHang_tb_TaiKhoan_UserID",
+                        column: x => x.UserID,
+                        principalTable: "tb_TaiKhoan",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
@@ -402,17 +378,28 @@ namespace WebOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_ChiTietGioHang",
+                name: "tb_SanPham",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    OrdersID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PriceSale = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    OdersId = table.Column<int>(type: "int", nullable: false),
-                    ProductsId = table.Column<int>(type: "int", nullable: false),
+                    IsHome = table.Column<bool>(type: "bit", nullable: false),
+                    IsSale = table.Column<bool>(type: "bit", nullable: false),
+                    IsFeature = table.Column<bool>(type: "bit", nullable: false),
+                    IsHot = table.Column<bool>(type: "bit", nullable: false),
+                    ProductCategory = table.Column<int>(type: "int", nullable: false),
+                    SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SeoKeyWords = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductCategorysId = table.Column<int>(type: "int", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     CreatBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -420,15 +407,108 @@ namespace WebOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_ChiTietGioHang", x => x.Id);
+                    table.PrimaryKey("PK_tb_SanPham", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tb_ChiTietGioHang_tb_GioHang_OdersId",
-                        column: x => x.OdersId,
-                        principalTable: "tb_GioHang",
+                        name: "FK_tb_SanPham_tb.ThuongHieu_BranchId",
+                        column: x => x.BranchId,
+                        principalTable: "tb.ThuongHieu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tb_ChiTietGioHang_tb_SanPham_ProductsId",
+                        name: "FK_tb_SanPham_tb_DanhMucSanPham_ProductCategorysId",
+                        column: x => x.ProductCategorysId,
+                        principalTable: "tb_DanhMucSanPham",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tb_DonHang",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalArmout = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModifiedDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb_DonHang", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tb_DonHang_tb.GioHang_CartId",
+                        column: x => x.CartId,
+                        principalTable: "tb.GioHang",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tb_DonHang_tb_TaiKhoan_UserId",
+                        column: x => x.UserId,
+                        principalTable: "tb_TaiKhoan",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tb.CartItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb.CartItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tb.CartItem_tb.GioHang_CartId",
+                        column: x => x.CartId,
+                        principalTable: "tb.GioHang",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tb.CartItem_tb_SanPham_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "tb_SanPham",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tb.OderItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OdersId = table.Column<int>(type: "int", nullable: false),
+                    ProductsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tb.OderItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_tb.OderItem_tb_DonHang_OdersId",
+                        column: x => x.OdersId,
+                        principalTable: "tb_DonHang",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tb.OderItem_tb_SanPham_ProductsId",
                         column: x => x.ProductsId,
                         principalTable: "tb_SanPham",
                         principalColumn: "Id",
@@ -446,24 +526,24 @@ namespace WebOnline.Migrations
                 column: "CategoryssId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_ChiTietGioHang_OdersId",
-                table: "tb_ChiTietGioHang",
-                column: "OdersId");
+                name: "IX_tb_DonHang_CartId",
+                table: "tb_DonHang",
+                column: "CartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_ChiTietGioHang_ProductsId",
-                table: "tb_ChiTietGioHang",
-                column: "ProductsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tb_GioHang_UserId",
-                table: "tb_GioHang",
+                name: "IX_tb_DonHang_UserId",
+                table: "tb_DonHang",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_RoleClaims_RoleId",
                 table: "tb_RoleClaims",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb_SanPham_BranchId",
+                table: "tb_SanPham",
+                column: "BranchId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_SanPham_ProductCategorysId",
@@ -503,6 +583,32 @@ namespace WebOnline.Migrations
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb.CartItem_CartId",
+                table: "tb.CartItem",
+                column: "CartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb.CartItem_ProductId",
+                table: "tb.CartItem",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb.GioHang_UserID",
+                table: "tb.GioHang",
+                column: "UserID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb.OderItem_OdersId",
+                table: "tb.OderItem",
+                column: "OdersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tb.OderItem_ProductsId",
+                table: "tb.OderItem",
+                column: "ProductsId");
         }
 
         /// <inheritdoc />
@@ -516,9 +622,6 @@ namespace WebOnline.Migrations
 
             migrationBuilder.DropTable(
                 name: "tb_CaiDatHeThong");
-
-            migrationBuilder.DropTable(
-                name: "tb_ChiTietGioHang");
 
             migrationBuilder.DropTable(
                 name: "tb_HinhAnhSanPham");
@@ -545,10 +648,10 @@ namespace WebOnline.Migrations
                 name: "tb_UserTokens");
 
             migrationBuilder.DropTable(
-                name: "tb_GioHang");
+                name: "tb.CartItem");
 
             migrationBuilder.DropTable(
-                name: "tb_SanPham");
+                name: "tb.OderItem");
 
             migrationBuilder.DropTable(
                 name: "tb_VaiTro");
@@ -557,10 +660,22 @@ namespace WebOnline.Migrations
                 name: "tb_DanhMuc");
 
             migrationBuilder.DropTable(
-                name: "tb_TaiKhoan");
+                name: "tb_DonHang");
 
             migrationBuilder.DropTable(
-                name: "tb_DanhMucSaPham");
+                name: "tb_SanPham");
+
+            migrationBuilder.DropTable(
+                name: "tb.GioHang");
+
+            migrationBuilder.DropTable(
+                name: "tb.ThuongHieu");
+
+            migrationBuilder.DropTable(
+                name: "tb_DanhMucSanPham");
+
+            migrationBuilder.DropTable(
+                name: "tb_TaiKhoan");
         }
     }
 }

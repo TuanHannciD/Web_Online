@@ -210,6 +210,10 @@ namespace WebOnline.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -269,6 +273,105 @@ namespace WebOnline.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("tb_TaiKhoan", (string)null);
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.Branch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameBranch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tb.ThuongHieu");
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserID")
+                        .IsUnique();
+
+                    b.ToTable("tb.GioHang");
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("tb.CartItem");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.Categorys", b =>
@@ -439,7 +542,7 @@ namespace WebOnline.Migrations
                     b.ToTable("tb_TinTuc");
                 });
 
-            modelBuilder.Entity("WebOnline.Models.EF.OderDetails", b =>
+            modelBuilder.Entity("WebOnline.Models.EF.OderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -447,32 +550,13 @@ namespace WebOnline.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OderId")
+                        .HasColumnType("int");
 
                     b.Property<int>("OdersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrdersID")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductsId")
@@ -481,13 +565,16 @@ namespace WebOnline.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OdersId");
 
                     b.HasIndex("ProductsId");
 
-                    b.ToTable("tb_ChiTietGioHang");
+                    b.ToTable("tb.OderItem");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.Oders", b =>
@@ -501,6 +588,9 @@ namespace WebOnline.Migrations
                     b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -541,9 +631,11 @@ namespace WebOnline.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CartId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("tb_GioHang");
+                    b.ToTable("tb_DonHang");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.Posts", b =>
@@ -659,7 +751,7 @@ namespace WebOnline.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tb_DanhMucSaPham");
+                    b.ToTable("tb_DanhMucSanPham");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.ProductImage", b =>
@@ -692,6 +784,9 @@ namespace WebOnline.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatBy")
                         .IsRequired()
@@ -766,6 +861,8 @@ namespace WebOnline.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
 
                     b.HasIndex("ProductCategorysId");
 
@@ -860,6 +957,36 @@ namespace WebOnline.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebOnline.Models.EF.Cart", b =>
+                {
+                    b.HasOne("WebOnline.Models.EF.ApplicationUser", "ApplicationUser")
+                        .WithOne("carts")
+                        .HasForeignKey("WebOnline.Models.EF.Cart", "UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.CartItem", b =>
+                {
+                    b.HasOne("WebOnline.Models.EF.Cart", "Cart")
+                        .WithMany("cartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebOnline.Models.EF.Products", "Products")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("WebOnline.Models.EF.News", b =>
                 {
                     b.HasOne("WebOnline.Models.EF.Categorys", "Categorys")
@@ -871,10 +998,10 @@ namespace WebOnline.Migrations
                     b.Navigation("Categorys");
                 });
 
-            modelBuilder.Entity("WebOnline.Models.EF.OderDetails", b =>
+            modelBuilder.Entity("WebOnline.Models.EF.OderItem", b =>
                 {
                     b.HasOne("WebOnline.Models.EF.Oders", "Oders")
-                        .WithMany("OderDetails")
+                        .WithMany()
                         .HasForeignKey("OdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -892,11 +1019,19 @@ namespace WebOnline.Migrations
 
             modelBuilder.Entity("WebOnline.Models.EF.Oders", b =>
                 {
-                    b.HasOne("WebOnline.Models.EF.ApplicationUser", "ApplicationUser")
-                        .WithMany("orders")
+                    b.HasOne("WebOnline.Models.EF.Cart", "Cart")
+                        .WithMany("Oders")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebOnline.Models.EF.ApplicationUser", "User")
+                        .WithMany("Oders")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("Cart");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.Posts", b =>
@@ -912,18 +1047,41 @@ namespace WebOnline.Migrations
 
             modelBuilder.Entity("WebOnline.Models.EF.Products", b =>
                 {
+                    b.HasOne("WebOnline.Models.EF.Branch", "Branch")
+                        .WithMany("Products")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WebOnline.Models.EF.ProductCategorys", "ProductCategorys")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategorysId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Branch");
+
                     b.Navigation("ProductCategorys");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.ApplicationUser", b =>
                 {
-                    b.Navigation("orders");
+                    b.Navigation("Oders");
+
+                    b.Navigation("carts")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.Branch", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.Cart", b =>
+                {
+                    b.Navigation("Oders");
+
+                    b.Navigation("cartItems");
                 });
 
             modelBuilder.Entity("WebOnline.Models.EF.Categorys", b =>
@@ -933,14 +1091,14 @@ namespace WebOnline.Migrations
                     b.Navigation("posts");
                 });
 
-            modelBuilder.Entity("WebOnline.Models.EF.Oders", b =>
-                {
-                    b.Navigation("OderDetails");
-                });
-
             modelBuilder.Entity("WebOnline.Models.EF.ProductCategorys", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WebOnline.Models.EF.Products", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }

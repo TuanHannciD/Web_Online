@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebOnline.Models.EF
 {
     [Table("tb_SanPham")]
-    public class Products :CMAbstract
+    public class Products : CMAbstract
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,8 +26,9 @@ namespace WebOnline.Models.EF
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set;}
         public string SeoKeyWords { get; set;}
-
         public virtual ProductCategorys ProductCategorys { get; set; }
+        public virtual Branch Branch { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
         
 
     }

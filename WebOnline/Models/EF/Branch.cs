@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebOnline.Models.EF
 {
-    [Table("tb_DanhMucSanPham")]
-    public class ProductCategorys :CMAbstract
+    [Table("tb.ThuongHieu")]
+    public class Branch : CMAbstract
     {
-        public ProductCategorys() 
+        public Branch() 
         {
             this.Products = new HashSet<Products>();
         }
@@ -14,12 +14,9 @@ namespace WebOnline.Models.EF
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [StringLength(256,MinimumLength =6,ErrorMessage ="Phải dài từ 6 - 256 kí tự !!")]
+        public string NameBranch { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string SeoTitle {  get; set; }
-        public string SeoDescription { get; set;}
-        public string SeoKeyWord { get; set; } 
 
         public ICollection<Products> Products { get; set; }
     }
