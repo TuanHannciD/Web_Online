@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Content Remove="Controllers\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <None Remove="Controllers\**" />
+    <!-- Xóa hoặc bình luận các dòng này -->
+    <!-- <Compile Remove="Controllers\**" /> -->
+    <!-- <Content Remove="Controllers\**" /> -->
+    <!-- <EmbeddedResource Remove="Controllers\**" /> -->
+    <!-- <None Remove="Controllers\**" /> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -25,10 +26,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

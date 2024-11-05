@@ -29,6 +29,7 @@ namespace WebOnline.Models.EF
         public virtual ProductCategorys ProductCategorys { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+        public virtual ICollection<ProductVoucher> ProductVouchers { get; set; } = new HashSet<ProductVoucher>();
         
 
     }

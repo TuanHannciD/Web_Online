@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebOnline.Models;
 
@@ -11,9 +12,11 @@ using WebOnline.Models;
 namespace WebOnline.Migrations
 {
     [DbContext(typeof(WebOnlineDBContext))]
-    partial class WebOnlineDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241105012528_AddVoucher_to_DB")]
+    partial class AddVoucher_to_DB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

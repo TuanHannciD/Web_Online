@@ -31,5 +31,7 @@ namespace WebOnline.Models.EF
         public virtual Cart Cart { get; set; }
         public virtual ApplicationUser User { get; set; }
 
+        // Danh sách voucher áp dụng cho đơn hàng
+        public virtual ICollection<OrderVoucher> OrderVouchers { get; set; } = new HashSet<OrderVoucher>();
     }
 }

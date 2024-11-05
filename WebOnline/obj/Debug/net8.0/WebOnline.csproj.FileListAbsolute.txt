@@ -394,3 +394,5 @@ D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.AspNetCore.Identi
 D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\TinHoc\DuAn\Web_Online\WebOnline\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

@@ -27,43 +27,14 @@ namespace WebOnline.Models
         public DbSet<Products> products { get; set; }
         public DbSet<SystemSettings> systemSettings { get; set; }
         public DbSet<ProductImage> productImage { get; set; }
+        public DbSet<Voucher> voucher { get; set; }
+        public DbSet<OrderVoucher> orderVoucher { get; set; }
+        public DbSet<ProductVoucher> productVoucher { get; set; }
+        public DbSet<UserVoucher> userVoucher { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); // Đảm bảo gọi base method
-
-            // Đặt tên cho các bảng Identity
-            modelBuilder.Entity<ApplicationUser>(entity => 
-            {
-                entity.ToTable("tb_TaiKhoan"); // Tên bảng cho người dùng
-            });
-
-            modelBuilder.Entity<IdentityRole>(entity => 
-            {
-                entity.ToTable("tb_VaiTro"); // Tên bảng cho vai trò
-            });
-
-            modelBuilder.Entity<IdentityUserClaim<string>>(entity => 
-            {
-                entity.ToTable("tb_UserClaims"); // Tên bảng cho claims của người dùng
-            });
-
-            modelBuilder.Entity<IdentityUserLogin<string>>(entity => 
-            {
-                entity.ToTable("tb_UserLogins"); // Tên bảng cho đăng nhập của người dùng
-            });
-
-            modelBuilder.Entity<IdentityUserToken<string>>(entity => 
-            {
-                entity.ToTable("tb_UserTokens"); // Tên bảng cho token của người dùng
-            });
-
-            modelBuilder.Entity<IdentityRoleClaim<string>>(entity => 
-            {
-                entity.ToTable("tb_RoleClaims"); // Tên bảng cho claims của vai trò
-            });
-
-            
+            base.OnModelCreating(modelBuilder); // Đảm bảo gọi base method 
         }
     }
 }
